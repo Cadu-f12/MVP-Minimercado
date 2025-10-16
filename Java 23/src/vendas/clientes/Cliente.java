@@ -6,6 +6,7 @@ public class Cliente {
     private String telefone;
     private Categoria categoria;
 
+    // Getter e Setter para ID
     public int getId() {
         return id;
     }
@@ -13,6 +14,7 @@ public class Cliente {
         this.id = id;
     }
 
+    // Getter e Setter para nome
     public String getNome() {
         return nome;
     }
@@ -20,6 +22,7 @@ public class Cliente {
         this.nome = nome;
     }
 
+    // Getter e Setter para telefone
     public String getTelefone() {
         return telefone;
     }
@@ -27,6 +30,7 @@ public class Cliente {
         this.telefone = telefone;
     }
 
+    // Getter e Setter para categoria
     public Categoria getCategoria() {
         return categoria;
     }
