@@ -1,5 +1,13 @@
 package vendas.clientes;
 
 public class ClientePessoaFisica {
-    String cpf;
+    private String cpf;
+
+    // Getter & setter para o CPF
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 }
