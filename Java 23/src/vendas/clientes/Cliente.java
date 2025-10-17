@@ -1,17 +1,21 @@
 package vendas.clientes;
 
 public class Cliente {
-    private int id;
+    private final int id;
     private String nome;
     private String telefone;
     private Categoria categoria;
 
-    // Getter e Setter para ID
+    public Cliente(int id, String nome, String telefone, Categoria categoria) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.categoria = categoria;
+    }
+
+    // Getter para ID
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     // Getter e Setter para nome

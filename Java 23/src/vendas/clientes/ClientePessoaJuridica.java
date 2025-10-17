@@ -1,7 +1,11 @@
 package vendas.clientes;
 
-public class ClientePessoaJuridica {
+public class ClientePessoaJuridica extends Cliente {
     private String cnpj;
+
+    public ClientePessoaJuridica(int id, String nome, String telefone, Categoria categoria) {
+        super(id, nome, telefone, categoria);
+    }
 
     // Getter & setter para CNPJ
     public String getCnpj() {
