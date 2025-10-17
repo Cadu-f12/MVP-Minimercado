@@ -41,4 +41,14 @@ public class Cliente {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", categoria=" + categoria +
+                '}';
+    }
 }
