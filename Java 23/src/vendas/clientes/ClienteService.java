@@ -1,5 +1,6 @@
 package vendas.clientes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,11 +20,13 @@ public class ClienteService implements IClienteService {
 
     public Cliente[] listarClientes() {
         Cliente[] clientesListados = new Cliente[this.clientesCadastrados.size()];
-        for (int i = 0; i < clientesListados.length; i++) {
-            for (int x = 0; x < clientesListados.length; x++) {
-                clientesListados[i] = clientesCadastrados.get(x);
-            }
-        }
-        return clientesListados;
+        int i = 0;
+        System.out.println(clientesCadastrados.get(i));
+//        do {
+//            clientesListados[i] = clientesCadastrados.get(i);
+//            i++;
+//        } while (clientesListados.length != clientesCadastrados.size());
+
+        return new Cliente[0];
     }
 }

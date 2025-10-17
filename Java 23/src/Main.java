@@ -3,6 +3,7 @@ import vendas.clientes.Categoria;
 import vendas.clientes.Cliente;
 import vendas.clientes.ClienteService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
