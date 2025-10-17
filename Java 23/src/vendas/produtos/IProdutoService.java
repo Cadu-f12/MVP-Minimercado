@@ -6,4 +6,5 @@ public interface IProdutoService {
     void cadastroCliente(Cliente cliente);
     Cliente consultarCliente(int id);
     Cliente[] listaCliente();
+
 }
