@@ -5,6 +5,7 @@ public class Cliente {
     private String nome;
     private String telefone;
     private Categoria categoria;
+    private boolean fidelidade;
 
     // Construtor da classe Cliente
     public Cliente(int id, String nome, String telefone, Categoria categoria) {
@@ -43,6 +44,14 @@ public class Cliente {
         this.categoria = categoria;
     }
 
+    // Getter e Setter para fidelidade
+    public boolean getFidelidade() {
+        return this.fidelidade;
+    }
+    public void setFidelidade(boolean fidelidade) {
+        this.fidelidade = fidelidade;
+    }
+
     // toString
     @Override
     public String toString() {
@@ -51,6 +60,7 @@ public class Cliente {
                 ", nome='" + nome + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", categoria=" + categoria +
+                ", fidelidade=" + fidelidade +
                 '}';
     }
 }

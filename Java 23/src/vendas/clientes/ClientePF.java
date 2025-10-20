@@ -1,9 +1,9 @@
 package vendas.clientes;
 
-public class ClientePessoaFisica extends Cliente {
+public class ClientePF extends Cliente {
     private String cpf;
 
-    public ClientePessoaFisica(int id, String nome, String telefone, Categoria categoria) {
+    public ClientePF(int id, String nome, String telefone, Categoria categoria) {
         super(id, nome, telefone, categoria);
     }
 
