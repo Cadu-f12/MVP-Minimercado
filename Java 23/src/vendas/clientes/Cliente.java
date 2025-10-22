@@ -1,6 +1,6 @@
 package vendas.clientes;
 
-public class Cliente {
+public abstract class Cliente {
     private final int id;
     private String nome;
     private String telefone;
