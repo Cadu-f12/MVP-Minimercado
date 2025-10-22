@@ -34,32 +34,6 @@ public class ClienteService implements IClienteService {
         return clientesListados;
     }
 
-    /* Metodo que pega todos os clientes do "MAP clientes"
-    fazendo uma cópia para o vetor Cliente[] e assim pegando somente os clientes que não são tem como
-     NULO na categoria. */
-    public Cliente[] listarClientesFidelidade() {
-        Cliente[] clientes = new Cliente[this.clientes.size()];
-
-        this.clientes.values().toArray(clientes);
-
-        int qtdDeFieis = 0;
-        for (Cliente cliente : clientes) {
-            if (!(cliente.getCategoria() == Categoria.NULO)) {
-                qtdDeFieis += 1;
-            }
-        }
-
-        int i = 0;
-        Cliente[] clientesFidelidade = new Cliente[qtdDeFieis];
-        for (Cliente cliente : clientes) {
-            if (!(cliente.getCategoria() == Categoria.NULO)) {
-                clientesFidelidade[i] = cliente;
-                i++;
-            }
-        }
-        return clientesFidelidade;
-    }
-
     /* Metodo que não retorna nada, porém inclui um cliente no "MAP clientes"
     se o cliente não for repetido */
     @Override
@@ -68,5 +42,15 @@ public class ClienteService implements IClienteService {
             throw new ClienteDuplicadoException("ERRO: Este cliente já está cadastrado!");
         }
         clientes.put(cliente.getId(), cliente);
+    }
+
+    /*Metodo que não retorna nada, ele recebe o novo cliente (OBS: O novo cliente deve contar o mesmo ID que o que será editado)
+    Após isso o cliente "antigo" será substituido pelo novo cliente */
+    @Override
+    public void editarCliente(Cliente novoCliente) {
+        if (!this.clientes.containsKey(novoCliente.getId())) {
+            throw new ClienteNaoEncontradoException("ERRO: Cliente não existe no sistema");
+        }
+        clientes.put(novoCliente.getId(), novoCliente);
     }
 }

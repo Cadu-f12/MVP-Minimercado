@@ -3,6 +3,10 @@ package vendas.clientes;
 public class ClientePJ extends Cliente {
     private String cnpj;
 
+    public ClientePJ(int id, String nome, String telefone, Categoria categoria, String cnpj) {
+        super(id, nome, telefone, categoria);
+        this.cnpj = cnpj;
+    }
     public ClientePJ(int id, String nome, String telefone, Categoria categoria) {
         super(id, nome, telefone, categoria);
     }
