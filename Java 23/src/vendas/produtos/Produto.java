@@ -12,7 +12,6 @@ public class Produto {
 public int getId(){
     return this.id;
 }
-
 public void setId(int id){
     this.id = id;
 }
@@ -21,7 +20,6 @@ public void setId(int id){
 public String getNome(){
     return this.nome;
 }
-
 public void setNome(String nome){
     this.nome = nome;
 }
@@ -54,7 +52,6 @@ public void setCustoMedio(Double custoMedio){
 public int getEstoque(){
     return this.estoque;
 }
-
 public void setEstoque(int estoque){
     this.estoque = estoque;
 }

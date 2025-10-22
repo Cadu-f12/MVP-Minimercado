@@ -7,6 +7,8 @@ public interface IClienteService {
 
     //Listar clientes
     Cliente[] listarClientes();
+    //Listar clientes que estão cadastrados na fidelidade
+    Cliente[] listarClientesFidelidade();
 
     // Cadastrar clientes
     void cadastrarCliente(Cliente cliente);

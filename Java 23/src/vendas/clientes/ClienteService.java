@@ -1,5 +1,8 @@
 package vendas.clientes;
 
+import vendas.clientes.excecoes.ClienteDuplicadoException;
+import vendas.clientes.excecoes.ClienteNaoEncontradoException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +33,12 @@ public class ClienteService implements IClienteService {
 
         return clientesListados;
     }
+
     /* Metodo que pega todos os clientes do "MAP clientes"
     fazendo uma cópia para o vetor Cliente[] e assim pegando somente os clientes que não são tem como
      NULO na categoria. */
     public Cliente[] listarClientesFidelidade() {
-        Cliente [] clientes = new Cliente[this.clientes.size()];
+        Cliente[] clientes = new Cliente[this.clientes.size()];
 
         this.clientes.values().toArray(clientes);
 
