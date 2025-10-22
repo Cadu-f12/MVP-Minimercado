@@ -15,6 +15,8 @@ public class ClienteService implements IClienteService {
     buscando pelo id do cliente */
     @Override
     public Cliente consultarCliente(int id) {
+        if (!this.clientes.containsKey(id))
+            throw new ClienteNaoEncontradoException("ERRO: Cliente não existe no sistema");
         return this.clientes.get(id);
     }
 
@@ -27,6 +29,31 @@ public class ClienteService implements IClienteService {
         clientes.values().toArray(clientesListados);
 
         return clientesListados;
+    }
+    /* Metodo que pega todos os clientes do "MAP clientes"
+    fazendo uma cópia para o vetor Cliente[] e assim pegando somente os clientes que não são tem como
+     NULO na categoria. */
+    public Cliente[] listarClientesFidelidade() {
+        Cliente [] clientes = new Cliente[this.clientes.size()];
+
+        this.clientes.values().toArray(clientes);
+
+        int qtdDeFieis = 0;
+        for (Cliente cliente : clientes) {
+            if (!(cliente.getCategoria() == Categoria.NULO)) {
+                qtdDeFieis += 1;
+            }
+        }
+
+        int i = 0;
+        Cliente[] clientesFidelidade = new Cliente[qtdDeFieis];
+        for (Cliente cliente : clientes) {
+            if (!(cliente.getCategoria() == Categoria.NULO)) {
+                clientesFidelidade[i] = cliente;
+                i++;
+            }
+        }
+        return clientesFidelidade;
     }
 
     /* Metodo que não retorna nada, porém inclui um cliente no "MAP clientes"

@@ -1,6 +1,8 @@
 package vendas.clientes;
 
 public enum Categoria {
-    CLIENTE,
-    GESTOR
+    NULO,
+    BRONZE,
+    PRATA,
+    GOLD
 }
