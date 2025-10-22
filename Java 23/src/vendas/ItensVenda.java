@@ -3,36 +3,30 @@ package vendas;
 import vendas.produtos.Produto;
 
 public class ItensVenda {
-    private int id;
-    private String nome; // Produto.getNome()
+    private final int id;
+    private Produto produto; // Produto.getNome()
     private int quantidade;
-    private double preco; // Produto.getPreco() ou quantidade * Produto.getPreco()
+    private final double precoTotal; // Produto.getPreco() ou quantidade * Produto.getPreco()
 
-
-    public ItensVenda(int id, String nome, int quantidade, double preco) {
+    // Construtor que está calculando o preço total dos itens da venda.
+    public ItensVenda(int id, Produto produto, int quantidade) {
         this.id = id;
-        this.nome = nome;
+        this.produto = produto;
         this.quantidade = quantidade;
-        this.preco = preco;
-    }
-    public ItensVenda(int id) {
-        this.id = id;
+        this.precoTotal = produto.getPrecos() * this.quantidade;
     }
 
-    // Getter e Setter para id
+    // Getter para id
     public int getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    // Getter e Setter para nome
-    public String getNome() {
-        return nome;
+    // Getter e Setter para produto
+    public Produto getProduto() {
+        return this.produto;
     }
-    public void setNome(Produto produto) {
-        this.nome = produto.getNome();
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     // Getter e Setter para quantidade
@@ -43,11 +37,8 @@ public class ItensVenda {
         this.quantidade = quantidade;
     }
 
-    // Getter e Setter para preco
-    public double getPreco() {
-        return preco;
-    }
-    public void setPreco(double preco) {
-        this.preco = preco;
+    // Getter para preco
+    public double getPrecoTotal() {
+        return precoTotal;
     }
 }

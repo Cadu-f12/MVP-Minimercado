@@ -15,13 +15,16 @@ public class DescontoFidelidade {
         this.categoria = categoria;
     }
 
-    // Getter de Desconto
+    // Getter e Setter de Desconto
     public double getDesconto() {
         return this.desconto;
     }
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
+    }
 
     /* Metodo que aplica o desconto baseado no nível de fidelidade (Categoria)
-    se a categoria for NULA o metodo dispara uma exception. */
+        se a categoria for NULA o metodo dispara uma exception. */
     public void aplicarDesconto() {
         switch (categoria) {
             case NULO:
