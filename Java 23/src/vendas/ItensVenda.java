@@ -4,9 +4,9 @@ import vendas.produtos.Produto;
 
 public class ItensVenda {
     private final int id;
-    private Produto produto; // Produto.getNome()
+    private Produto produto;
     private int quantidade;
-    private final double precoTotal; // Produto.getPreco() ou quantidade * Produto.getPreco()
+    private final double precoTotal;
 
     // Construtor que está calculando o preço total dos itens da venda.
     public ItensVenda(int id, Produto produto, int quantidade) {
@@ -34,6 +34,9 @@ public class ItensVenda {
         return quantidade;
     }
     public void setQuantidade(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("ERRO: quantidade abaixo de zero ou igual a zero");
+        }
         this.quantidade = quantidade;
     }
 
