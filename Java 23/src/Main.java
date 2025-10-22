@@ -1,5 +1,9 @@
+import vendas.ItensVenda;
+import vendas.Venda;
+import vendas.VendaService;
 import vendas.clientes.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Main {
@@ -7,11 +11,15 @@ public class Main {
         ClienteService clienteService = new ClienteService();
         Cliente cliente1 = new ClientePF(12, "João", "6578", Categoria.NULO);
         Cliente cliente2 = new ClientePF(13, "Maria", "66778", Categoria.BRONZE);
-        Cliente cliente3 = new ClientePF(14, "Carlos", "7566", Categoria.GOLD);
+        Cliente cliente3 = new ClientePF(14, "Carlos", "7566", Categoria.OURO);
         Cliente cliente4 = new ClientePF(15, "Fernando", "6238", Categoria.NULO);
         Cliente cliente1E = new ClientePF(12, "ZYON", "43234", Categoria.BRONZE);
 
-        // TESTE DA CLASSE ClienteService
+
+
+
+
+        // TESTE DO DOMINIO CLIENTES
 
         // Cadastro de clientes
         clienteService.cadastrarCliente(cliente1);

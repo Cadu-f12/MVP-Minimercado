@@ -1,7 +1,7 @@
 package vendas.clientes;
 
-import vendas.clientes.excecoes.ClienteDuplicadoException;
-import vendas.clientes.excecoes.ClienteNaoEncontradoException;
+import vendas.clientes.excecoes_clientes.ClienteDuplicadoException;
+import vendas.clientes.excecoes_clientes.ClienteNaoEncontradoException;
 
 import java.util.HashMap;
 import java.util.Map;

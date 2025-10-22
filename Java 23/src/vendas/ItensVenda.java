@@ -1,10 +1,23 @@
 package vendas;
 
+import vendas.produtos.Produto;
+
 public class ItensVenda {
     private int id;
-    private String nome;
+    private String nome; // Produto.getNome()
     private int quantidade;
-    private double preco;
+    private double preco; // Produto.getPreco() ou quantidade * Produto.getPreco()
+
+
+    public ItensVenda(int id, String nome, int quantidade, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.preco = preco;
+    }
+    public ItensVenda(int id) {
+        this.id = id;
+    }
 
     // Getter e Setter para id
     public int getId() {
@@ -18,8 +31,8 @@ public class ItensVenda {
     public String getNome() {
         return nome;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(Produto produto) {
+        this.nome = produto.getNome();
     }
 
     // Getter e Setter para quantidade
