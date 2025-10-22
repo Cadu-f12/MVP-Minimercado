@@ -15,7 +15,6 @@ public class ProdutoService implements IProdutoService{
         this.clientes = clientes;
     }
 
-
     @Override
     public void cadastroCliente(Cliente cliente) {
 
