@@ -6,15 +6,15 @@ import java.time.LocalDateTime;
 
 public class Venda {
     private final int id;
-    private LocalDateTime dataHora;
+    private final LocalDateTime dataHora;
     private Cliente cliente;
     private ItensVenda[] itens;
-    private double desconto; // DescontoFidelidade.getDesconto()
+    private double desconto; // descontofidelidade.getDesconto()
     private double valorTotal; // Soma(itens);
 
-    public Venda(int id, LocalDateTime dataHora, Cliente cliente, ItensVenda[] itens, double desconto, double valorTotal) {
+    public Venda(int id, Cliente cliente, ItensVenda[] itens, double desconto, double valorTotal) {
         this.id = id;
-        this.dataHora = dataHora;
+        this.dataHora = LocalDateTime.now();
         this.cliente = cliente;
         this.itens = itens;
         this.desconto = desconto;
@@ -22,6 +22,7 @@ public class Venda {
     }
     public Venda(int id) {
         this.id = id;
+        this.dataHora = LocalDateTime.now();
     }
 
     // Getter e Setter para id
@@ -29,12 +30,9 @@ public class Venda {
         return id;
     }
 
-    // Getter e Setter para dataHora
+    // Getter para dataHora
     public LocalDateTime getDataHora() {
         return dataHora;
-    }
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
     }
 
     // Getter e Setter para cliente
