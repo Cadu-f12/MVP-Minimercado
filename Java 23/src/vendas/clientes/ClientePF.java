@@ -1,7 +1,11 @@
 package vendas.clientes;
 
-public class ClientePessoaFisica {
+public class ClientePF extends Cliente {
     private String cpf;
+
+    public ClientePF(int id, String nome, String telefone, Categoria categoria) {
+        super(id, nome, telefone, categoria);
+    }
 
     // Getter & setter para o CPF
     public String getCpf() {
