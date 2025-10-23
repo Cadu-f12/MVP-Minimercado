@@ -45,5 +45,23 @@ public class ProdutoService implements IProdutoService{
             }
         }
 
+// ==========================================================================================
+// EDIÇÃO DE UM PRODUTO
+
+    @Override
+    public void editarProdutos(int id, Produto novo) {
+        Produto existente = produtos.get(id);
+
+        if (existente != null) {
+            existente.setNome(novo.getNome());
+            existente.setCodigoBarras(novo.getCodigoBarras());
+            existente.setPreco(novo.getPrecos());
+            existente.setCustoMedio(novo.getCustoMedio());
+            existente.setEstoque(novo.getEstoque());
+            System.out.println("Produto " + existente.getNome() + " atualizado com sucesso!");
+        } else {
+            System.out.println("Produto com ID " + id + " não encontrado.");
+        }
+    }
 }
 

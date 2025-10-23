@@ -6,5 +6,6 @@ public interface IProdutoService {
     void cadastroProduto(Produto produto);
     void listaProdutos();
     void consultaProdutos(int id);
+    void editarProdutos(int id, Produto novo);
 
 }
