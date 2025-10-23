@@ -2,15 +2,15 @@ package vendas.clientes;
 
 public interface IClienteService {
 
-    //Consultar cliente
+    // Consultar um cliente para ser usado
     Cliente consultarCliente(int id);
 
-    //Listar clientes
+    // Lista os clientes para ser usado
     Cliente[] listarClientes();
 
-    // Cadastrar clientes
+    // Cadastrar os clientes para ser usado no sistema
     void cadastrarCliente(Cliente cliente);
 
-    // Editar o cliente
+    // Editar um cliente já cadastrado no sistema
     void editarCliente(Cliente cliente);
 }
