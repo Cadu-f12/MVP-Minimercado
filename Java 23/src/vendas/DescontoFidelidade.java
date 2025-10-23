@@ -2,7 +2,6 @@ package vendas;
 
 import vendas.clientes.Categoria;
 import vendas.clientes.Cliente;
-import vendas.excecoes_vendas.CategoriaNulaException;
 
 public class DescontoFidelidade {
     private Categoria categoria;
@@ -29,11 +28,11 @@ public class DescontoFidelidade {
     }
 
     /* Metodo que aplica o desconto baseado no nível de fidelidade (Categoria)
-        se a categoria for NULA o metodo dispara uma exception. */
+        se a categoria for NULO o desconto é igual a zero */
     public void aplicarDesconto() {
         switch (this.categoria) {
             case NULO:
-                throw new CategoriaNulaException("ERRO: A categoria NULA não aplica desconto");
+                this.desconto = 0;
             case BRONZE:
                 this.desconto = 0.05;
                 break;
