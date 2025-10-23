@@ -12,6 +12,13 @@ public class ItensVendaService {
         this.itensVenda = new HashMap<>();
     }
 
+    public void registrarItensVenda(ItensVenda itensVenda) {
+        if (this.itensVenda.containsKey(itensVenda.getId())) {
+            throw new ItensVendaDuplicadoException("ERRO: ItensVenda já está registrado!");
+        }
+        this.itensVenda.put(itensVenda.getId(), itensVenda);
+    }
+
     public ItensVenda[] listarItensVenda() {
         ItensVenda[] ItensVendaLista = new ItensVenda[this.itensVenda.size()];
 
@@ -30,12 +37,5 @@ public class ItensVendaService {
             soma += itensVenda.getPrecoTotal();
         }
         return soma;
-    }
-
-    public void registrarItensVenda(ItensVenda itensVenda) {
-        if (this.itensVenda.containsKey(itensVenda.getId())) {
-            throw new ItensVendaDuplicadoException("ERRO: ItensVenda já está registrado!");
-        }
-        this.itensVenda.put(itensVenda.getId(), itensVenda);
     }
 }

@@ -3,22 +3,24 @@ package vendas;
 import vendas.clientes.Cliente;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class Venda {
     private final int id;
     private final LocalDateTime dataHora;
     private Cliente cliente;
-    private ItensVenda[] itens;
+    private ItensVenda[] itens; // ItensService.listarItensVenda()
     private double desconto; // desconto.getDesconto()
-    private double valorTotal; // Soma(itens);
+    private double valorTotal; // ItensService.somarItensVenda()
 
-    public Venda(int id, Cliente cliente, ItensVenda[] itens, DescontoFidelidade desconto, ItensVendaService itensVendaService) {
+    public Venda(int id, Cliente cliente, ItensVenda[] itens, double desconto, double valorTotal) {
         this.id = id;
         this.dataHora = LocalDateTime.now();
         this.cliente = cliente;
         this.itens = itens;
-        this.desconto = desconto.getDesconto();
-        this.valorTotal = itensVendaService.somarItensVenda();
+        this.desconto = desconto;
+        this.valorTotal = valorTotal - (valorTotal * this.desconto);
     }
     public Venda(int id) {
         this.id = id;
@@ -32,6 +34,7 @@ public class Venda {
 
     // Getter para dataHora
     public LocalDateTime getDataHora() {
+
         return dataHora;
     }
 
@@ -65,5 +68,19 @@ public class Venda {
     }
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    // toString que formata a data e hora
+    @Override
+    public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm - dd/MM/yyyy ");
+        return "Venda{" +
+                "id=" + id +
+                ", dataHora=" + dataHora.format(formato) +
+                ", cliente=" + cliente +
+                ", itens=" + Arrays.toString(itens) +
+                ", desconto=" + desconto +
+                ", valorTotal=" + valorTotal +
+                '}';
     }
 }

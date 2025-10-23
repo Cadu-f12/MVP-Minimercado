@@ -12,7 +12,16 @@ public class ItensVenda {
     public ItensVenda(int id, Produto produto, int quantidade) {
         this.id = id;
         this.produto = produto;
-        this.quantidade = quantidade;
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("ERRO: quantidade abaixo de zero ou igual a zero");
+        } else {
+            this.quantidade = quantidade;
+        }
+        this.precoTotal = produto.getPrecos() * this.quantidade;
+    }
+    public ItensVenda(int id, Produto produto) {
+        this.id = id;
+        this.produto = produto;
         this.precoTotal = produto.getPrecos() * this.quantidade;
     }
 
@@ -43,5 +52,16 @@ public class ItensVenda {
     // Getter para preco
     public double getPrecoTotal() {
         return precoTotal;
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "ItensVenda{" +
+                "id=" + id +
+                ", produto=" + produto +
+                ", quantidade=" + quantidade +
+                ", precoTotal=" + precoTotal +
+                '}';
     }
 }
