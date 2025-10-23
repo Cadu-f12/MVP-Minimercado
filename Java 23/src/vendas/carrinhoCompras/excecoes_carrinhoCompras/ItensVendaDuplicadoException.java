@@ -1,4 +1,4 @@
-package vendas.excecoes_vendas;
+package vendas.carrinhoCompras.excecoes_carrinhoCompras;
 
 public class ItensVendaDuplicadoException extends RuntimeException {
     public ItensVendaDuplicadoException(String message) {

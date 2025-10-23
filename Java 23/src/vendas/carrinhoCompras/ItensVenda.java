@@ -1,7 +1,7 @@
 package vendas.carrinhoCompras;
 
-import vendas.excecoes_vendas.QuantidadeForaDeEstoqueException;
-import vendas.excecoes_vendas.QuantidadeNegativaException;
+import vendas.carrinhoCompras.excecoes_carrinhoCompras.QuantidadeForaDeEstoqueException;
+import vendas.carrinhoCompras.excecoes_carrinhoCompras.QuantidadeNegativaException;
 import vendas.produtos.Produto;
 // FIZ UMA DEPENDÊNCIA GIGANTESCA ItensVenda -> ItensVendaService -> Venda -> VendaService
 public class ItensVenda {

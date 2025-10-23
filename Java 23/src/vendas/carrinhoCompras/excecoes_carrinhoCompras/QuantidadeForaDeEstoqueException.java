@@ -1,4 +1,4 @@
-package vendas.excecoes_vendas;
+package vendas.carrinhoCompras.excecoes_carrinhoCompras;
 
 public class QuantidadeForaDeEstoqueException extends RuntimeException {
     public QuantidadeForaDeEstoqueException(String message) {

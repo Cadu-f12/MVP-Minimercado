@@ -1,6 +1,6 @@
 package vendas.carrinhoCompras;
 
-import vendas.excecoes_vendas.ItensVendaDuplicadoException;
+import vendas.carrinhoCompras.excecoes_carrinhoCompras.ItensVendaDuplicadoException;
 
 import java.util.HashMap;
 import java.util.Map;
