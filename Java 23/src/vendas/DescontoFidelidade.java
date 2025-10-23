@@ -33,6 +33,7 @@ public class DescontoFidelidade {
         switch (this.categoria) {
             case NULO:
                 this.desconto = 0;
+                break;
             case BRONZE:
                 this.desconto = 0.05;
                 break;
