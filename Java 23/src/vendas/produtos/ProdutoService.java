@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProdutoService implements IProdutoService{
-    private final Map<Integer, Produto> produtos = new HashMap<>();
+    private final Map<Integer, Produto> produtos;
 
-// ==========================================================================================
+    public ProdutoService(Map<Integer, Produto> produtos) {
+        this.produtos = new HashMap<>();
+    }
+
+    // ==========================================================================================
 // CADASTRO DE PRODUTOS
     @Override
     public void cadastroProduto(Produto produto) {
@@ -38,7 +42,6 @@ public class ProdutoService implements IProdutoService{
                 System.out.println("Nome: " + consulta.getNome());
                 System.out.println("Código de Barras: " + consulta.getCodigoBarras());
                 System.out.println("Preço: R$" + consulta.getPrecos());
-                System.out.println("Custo Médio: R$" + consulta.getCustoMedio());
                 System.out.println("Estoque: " + consulta.getEstoque());
             } else {
                 System.out.println("Produto com ID " + id + " não encontrado.");
@@ -56,24 +59,11 @@ public class ProdutoService implements IProdutoService{
             existente.setNome(novo.getNome());
             existente.setCodigoBarras(novo.getCodigoBarras());
             existente.setPreco(novo.getPrecos());
-            existente.setCustoMedio(novo.getCustoMedio());
             existente.setEstoque(novo.getEstoque());
+            produtos.put(id, novo);
             System.out.println("Produto " + existente.getNome() + " atualizado com sucesso!");
         } else {
             System.out.println("Produto com ID " + id + " não encontrado.");
-        }
-    }
-// ==========================================================================================
-// EDIÇÃO DE UM PRODUTO
-    @Override
-    public void listarProdutos() {
-        for (Produto p : produtos.values()) {
-            System.out.println("ID: " + p.getId() +
-                    " | Nome: " + p.getNome() +
-                    " | Código de Barras: " + p.getCodigoBarras() +
-                    " | Preço: R$" + p.getPrecos() +
-                    " | Custo Médio: R$" + p.getCustoMedio() +
-                    " | Estoque: " + p.getEstoque());
         }
     }
 

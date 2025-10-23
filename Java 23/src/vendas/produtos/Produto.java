@@ -5,7 +5,6 @@ public class Produto {
     String nome;
     String codigoBarras;
     double preco;
-    double custoMedio; // PERGUNTAR SOBRE OQUE SIGNIFICA
     int estoque;
 
 // ID
