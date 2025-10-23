@@ -1,7 +1,7 @@
 package vendas;
 
 import vendas.produtos.Produto;
-
+// FIZ UMA DEPENDÊNCIA GIGANTESCA ItensVenda -> ItensVendaService -> Venda -> VendaService
 public class ItensVenda {
     private final int id;
     private Produto produto;

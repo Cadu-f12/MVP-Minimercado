@@ -18,4 +18,8 @@ public class VendaService {
         }
         vendas.put(venda.getId(), venda);
     }
+    public void listarVendas() {
+        Venda[] vendas = new Venda[this.vendas.size()];
+
+    }
 }

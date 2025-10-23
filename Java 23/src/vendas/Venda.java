@@ -12,13 +12,13 @@ public class Venda {
     private double desconto; // desconto.getDesconto()
     private double valorTotal; // Soma(itens);
 
-    public Venda(int id, Cliente cliente, ItensVenda[] itens, DescontoFidelidade desconto, double valorTotal) {
+    public Venda(int id, Cliente cliente, ItensVenda[] itens, DescontoFidelidade desconto, ItensVendaService itensVendaService) {
         this.id = id;
         this.dataHora = LocalDateTime.now();
         this.cliente = cliente;
         this.itens = itens;
         this.desconto = desconto.getDesconto();
-        this.valorTotal = valorTotal;
+        this.valorTotal = itensVendaService.somarItensVenda();
     }
     public Venda(int id) {
         this.id = id;
