@@ -63,5 +63,64 @@ public class ProdutoService implements IProdutoService{
             System.out.println("Produto com ID " + id + " não encontrado.");
         }
     }
+// ==========================================================================================
+// EDIÇÃO DE UM PRODUTO
+    @Override
+    public void listarProdutos() {
+        for (Produto p : produtos.values()) {
+            System.out.println("ID: " + p.getId() +
+                    " | Nome: " + p.getNome() +
+                    " | Código de Barras: " + p.getCodigoBarras() +
+                    " | Preço: R$" + p.getPrecos() +
+                    " | Custo Médio: R$" + p.getCustoMedio() +
+                    " | Estoque: " + p.getEstoque());
+        }
+    }
+
+// ==========================================================================================
+// REGISTRO NO ESTOQUE
+    @Override
+    public void registroEstoque(int id, int quantidade, String tipo) {
+        Produto produto = produtos.get(id);
+
+        if (produto == null) {
+            System.out.println("Produto" + id + " não encontrado.");
+            return;
+        }
+
+        switch (tipo.toLowerCase()) {
+            case "entrada":
+                produto.setEstoque(produto.getEstoque() + quantidade);
+                System.out.println("Entrada de " + quantidade + " unidades no produto " + produto.getNome() + ".");
+                break;
+
+            case "saida":
+                if (produto.getEstoque() >= quantidade) {
+                    produto.setEstoque(produto.getEstoque() - quantidade);
+                    System.out.println("Saída de " + quantidade + " unidades do produto " + produto.getNome() + ".");
+                } else {
+                    System.out.println("Estoque insuficiente para saída.");
+                }
+                break;
+
+            case "baixa":
+                produto.setEstoque(0);
+                System.out.println("Baixa total aplicada ao produto " + produto.getNome() + ".");
+                break;
+
+            default:
+                System.out.println("Tipo de movimentação inválido. Use: entrada, saida ou baixa.");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
