@@ -1,14 +1,14 @@
-package vendas;
+package vendas.carrinhoCompras;
 
 import vendas.excecoes_vendas.ItensVendaDuplicadoException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItensVendaService {
+public class CarrinhoDeCompras {
     private final Map<Integer, ItensVenda> itensVenda;
 
-    public ItensVendaService() {
+    public CarrinhoDeCompras() {
         this.itensVenda = new HashMap<>();
     }
 

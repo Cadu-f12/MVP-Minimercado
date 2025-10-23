@@ -1,4 +1,4 @@
-package vendas;
+package vendas.carrinhoCompras;
 
 import vendas.excecoes_vendas.QuantidadeForaDeEstoqueException;
 import vendas.excecoes_vendas.QuantidadeNegativaException;

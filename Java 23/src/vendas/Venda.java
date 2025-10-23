@@ -1,5 +1,6 @@
 package vendas;
 
+import vendas.carrinhoCompras.ItensVenda;
 import vendas.clientes.Cliente;
 
 import java.time.LocalDateTime;
