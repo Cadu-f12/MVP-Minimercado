@@ -9,15 +9,15 @@ public class Venda {
     private final LocalDateTime dataHora;
     private Cliente cliente;
     private ItensVenda[] itens;
-    private double desconto; // descontofidelidade.getDesconto()
+    private double desconto; // desconto.getDesconto()
     private double valorTotal; // Soma(itens);
 
-    public Venda(int id, Cliente cliente, ItensVenda[] itens, double desconto, double valorTotal) {
+    public Venda(int id, Cliente cliente, ItensVenda[] itens, DescontoFidelidade desconto, double valorTotal) {
         this.id = id;
         this.dataHora = LocalDateTime.now();
         this.cliente = cliente;
         this.itens = itens;
-        this.desconto = desconto;
+        this.desconto = desconto.getDesconto();
         this.valorTotal = valorTotal;
     }
     public Venda(int id) {
@@ -25,7 +25,7 @@ public class Venda {
         this.dataHora = LocalDateTime.now();
     }
 
-    // Getter e Setter para id
+    // Getter para id
     public int getId() {
         return id;
     }
