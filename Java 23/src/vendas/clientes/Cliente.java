@@ -1,5 +1,9 @@
 package vendas.clientes;
 
+import vendas.clientes.excecoes_clientes.AtribudoIncompletoException;
+
+import java.util.Objects;
+
 public abstract class Cliente {
     private final int id;
     private String nome;
@@ -27,6 +31,9 @@ public abstract class Cliente {
         return nome;
     }
     public void setNome(String nome) {
+        if (Objects.equals(nome, "")) {
+            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM NOME NÃO É PERMITIDO!");
+        }
         this.nome = nome;
     }
 
@@ -35,6 +42,9 @@ public abstract class Cliente {
         return telefone;
     }
     public void setTelefone(String telefone) {
+        if (Objects.equals(telefone, "")) {
+            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM TELEFONE NÃO É PERMITIDO!");
+        }
         this.telefone = telefone;
     }
 
@@ -43,10 +53,11 @@ public abstract class Cliente {
         return categoria;
     }
     public void setCategoria(Categoria categoria) {
+        if (Objects.equals(categoria, null)) {
+            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM CATEGORIA NÃO É PERMITIDO!");
+        }
         this.categoria = categoria;
     }
-
-
 
     // toString
     @Override

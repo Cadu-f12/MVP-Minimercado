@@ -1,5 +1,9 @@
 package vendas.clientes;
 
+import vendas.clientes.excecoes_clientes.AtribudoIncompletoException;
+
+import java.util.Objects;
+
 public class ClientePJ extends Cliente {
     private String cnpj;
 
@@ -7,9 +11,8 @@ public class ClientePJ extends Cliente {
         super(id, nome, telefone, categoria);
         this.cnpj = cnpj;
     }
-    public ClientePJ(int id, String cnpj) {
+    public ClientePJ(int id) {
         super(id);
-        this.cnpj = cnpj;
     }
 
     // Getter & setter para CNPJ
@@ -17,6 +20,16 @@ public class ClientePJ extends Cliente {
         return cnpj;
     }
     public void setCnpj(String cnpj) {
+        if (Objects.equals(cnpj, "")) {
+            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM CNPJ NÃO É PERMITIDO!");
+        }
         this.cnpj = cnpj;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientePJ{" +
+                "cnpj='" + cnpj + '\'' +
+                "} " + super.toString();
     }
 }
