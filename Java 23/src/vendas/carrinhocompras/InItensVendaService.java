@@ -1,4 +1,4 @@
-package vendas.carrinhoCompras;
+package vendas.carrinhocompras;
 
 public interface InItensVendaService {
 

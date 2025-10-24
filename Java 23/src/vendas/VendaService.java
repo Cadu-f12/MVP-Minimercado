@@ -1,6 +1,6 @@
 package vendas;
 
-import vendas.excecoes_vendas.VendaDuplicadaException;
+import vendas.excecoesvendas.VendaDuplicadaException;
 
 import java.util.HashMap;
 import java.util.Map;

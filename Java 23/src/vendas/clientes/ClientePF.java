@@ -7,8 +7,8 @@ public class ClientePF extends Cliente {
         super(id, nome, telefone, categoria);
         this.cpf = cpf;
     }
-    public ClientePF(int id, String nome, String telefone, Categoria categoria) {
-        super(id, nome, telefone, categoria);
+    public ClientePF(int id, String nome, String telefone) {
+        super(id, nome, telefone, Categoria.NULO);
     }
 
     // Getter & setter para o CPF

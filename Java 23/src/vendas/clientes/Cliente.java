@@ -13,9 +13,6 @@ public abstract class Cliente {
         this.telefone = telefone;
         this.categoria = categoria;
     }
-    public Cliente(int id) {
-        this.id = id;
-    }
 
     // Getter para ID
     public int getId() {

@@ -1,7 +1,7 @@
-package vendas.carrinhoCompras;
+package vendas.carrinhocompras;
 
-import vendas.carrinhoCompras.excecoes_carrinhoCompras.QuantidadeForaDeEstoqueException;
-import vendas.carrinhoCompras.excecoes_carrinhoCompras.QuantidadeNegativaException;
+import vendas.carrinhocompras.excecoescarrinhocompras.QuantidadeForaDeEstoqueException;
+import vendas.carrinhocompras.excecoescarrinhocompras.QuantidadeNegativaException;
 import vendas.produtos.Produto;
 // FIZ UMA DEPENDÊNCIA GIGANTESCA ItensVenda -> ItensVendaService -> Venda -> VendaService
 public class ItensVenda {
@@ -16,7 +16,7 @@ public class ItensVenda {
         this.produto = produto;
         if (quantidade <= 0) {
             throw new QuantidadeNegativaException("ERRO: quantidade abaixo de zero ou igual a zero");
-        } else if(quantidade > produto.getId()) {
+        } else if(quantidade > produto.getEstoque()) {
             throw new QuantidadeForaDeEstoqueException("ERRO: quantidade maior do que a restante no estoque");
         } else {
             this.quantidade = quantidade;

@@ -1,4 +1,4 @@
-package vendas.excecoes_vendas;
+package vendas.excecoesvendas;
 
 public class VendaDuplicadaException extends RuntimeException {
     public VendaDuplicadaException(String message) {
