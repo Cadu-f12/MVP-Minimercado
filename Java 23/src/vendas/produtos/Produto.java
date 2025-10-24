@@ -7,7 +7,15 @@ public class Produto {
     double preco;
     int estoque;
 
-// ID
+    public Produto(int id, String nome, String codigoBarras, double preco, int estoque) {
+        this.id = id;
+        this.nome = nome;
+        this.codigoBarras = codigoBarras;
+        this.preco = preco;
+        this.estoque = estoque;
+    }
+
+    // ID
 public int getId(){
     return this.id;
 }
@@ -39,14 +47,6 @@ public void setPreco(Double  preco){
     this.preco = preco;
 }
 
-// Custo Médio
-public double getCustoMedio(){
-    return this.custoMedio;
-}
-public void setCustoMedio(Double custoMedio){
-    this.custoMedio = custoMedio;
-}
-
 // Estoque
 public int getEstoque(){
     return this.estoque;
@@ -55,5 +55,14 @@ public void setEstoque(int estoque){
     this.estoque = estoque;
 }
 
-
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", codigoBarras='" + codigoBarras + '\'' +
+                ", preco=" + preco +
+                ", estoque=" + estoque +
+                '}';
+    }
 }
