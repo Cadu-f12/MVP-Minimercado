@@ -7,8 +7,9 @@ public class ClientePJ extends Cliente {
         super(id, nome, telefone, categoria);
         this.cnpj = cnpj;
     }
-    public ClientePJ(int id, String nome, String telefone, Categoria categoria) {
-        super(id, nome, telefone, categoria);
+    public ClientePJ(int id, String cnpj) {
+        super(id);
+        this.cnpj = cnpj;
     }
 
     // Getter & setter para CNPJ
