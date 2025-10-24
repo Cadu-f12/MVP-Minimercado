@@ -2,10 +2,9 @@ package teste;
 
 import vendas.clientes.*;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class Funcionalidades {
+public class CadastroDeCliente {
 
     // Criação de cliente com CPF ou CNPJ, para cadastrar no sistema
     public Cliente criarCliente(){

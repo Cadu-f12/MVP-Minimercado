@@ -1,4 +1,4 @@
-package teste;
+package testeclientes;
 
 public class Menu {
 
