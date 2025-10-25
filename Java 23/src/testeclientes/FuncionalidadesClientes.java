@@ -19,7 +19,7 @@ public class FuncionalidadesClientes {
             int tipo = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.print("Digite o seu id: ");
+            System.out.print("ID: ");
             int id = scanner.nextInt();
             scanner.nextLine();
 
@@ -28,35 +28,40 @@ public class FuncionalidadesClientes {
             if (tipo == 1) {
                 cliente = new ClientePJ(id);
 
-                System.out.print("Digite o seu nome: ");
+                System.out.print("Nome: ");
                 cliente.setNome(scanner.nextLine());
 
-                System.out.print("Digite o seu telefone: ");
+                System.out.print("Telefone: ");
                 cliente.setTelefone(scanner.nextLine());
 
-                System.out.print("Digite o seu CNPJ: ");
+                System.out.print("CNPJ: ");
                 ((ClientePJ) cliente).setCnpj(scanner.nextLine());
 
             } else if (tipo == 2) {
                 cliente = new ClientePF(id);
 
-                System.out.print("Digite o seu nome: ");
+                System.out.print("Nome: ");
                 cliente.setNome(scanner.nextLine());
 
-                System.out.print("Digite o seu telefone: ");
+                System.out.print("Telefone: ");
                 cliente.setTelefone(scanner.nextLine());
 
-                System.out.print("Digite o seu CPF: ");
+                System.out.print("CPF: ");
                 ((ClientePF) cliente).setCpf(scanner.nextLine());
 
             } else {
                 System.out.println("OPÇÃO INVÁLIDA!\nTENTE NOVAMENTE.\n");
                 continue; // volta para o início do while
             }
-
             cliente.setCategoria(Categoria.NULO); // TODA CRIAÇÃO DE UM CLIENTE NOVO POR PADRÃO, SURGE COMO FIDELIDADE NULA.
-            clienteService.cadastrarCliente(cliente);
-            System.out.println("\nCliente cadastrado com sucesso!\n");
+
+            try {
+                clienteService.cadastrarCliente(cliente);
+                System.out.println("\nCliente cadastrado com sucesso!\n");
+            } catch (Exception e) {
+                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
+                continue;
+            }
             break; // sai do loop se tudo deu certo
         }
     }

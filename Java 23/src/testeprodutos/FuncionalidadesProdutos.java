@@ -1,16 +1,14 @@
-package teste;
+package testeprodutos;
 
 import vendas.produtos.Produto;
 import vendas.produtos.ProdutoService;
 import java.util.Scanner;
 
 public class FuncionalidadesProdutos {
-
     private static final ProdutoService produtoService = new ProdutoService(); // única instância compartilhada
     private final Scanner scanner = new Scanner(System.in);
 
     public void cadastrarProduto() {
-        System.out.println("=== Cadastro de Produto ===");
         System.out.print("ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();

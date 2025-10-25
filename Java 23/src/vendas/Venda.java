@@ -35,7 +35,6 @@ public class Venda {
 
     // Getter para dataHora
     public LocalDateTime getDataHora() {
-
         return dataHora;
     }
 

@@ -1,6 +1,6 @@
 package vendas.carrinhocompras;
 
-public interface InItensVendaService {
+public interface ICarrinhoDeCompras {
 
     // Registra itensVenda no sistema
     void registrarItensVenda(ItensVenda itensVenda);
