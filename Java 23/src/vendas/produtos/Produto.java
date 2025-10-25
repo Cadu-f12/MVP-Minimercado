@@ -1,11 +1,16 @@
 package vendas.produtos;
 
+import vendas.clientes.excecoes_clientes.AtributoIncompletoException;
+import vendas.produtos.excecoesprodutos.QuantNegativadeProdutosExcep;
+
+import java.util.Objects;
+
 public class Produto {
-    int id;
-    String nome;
-    String codigoBarras;
-    double preco;
-    int estoque;
+    private final int id;
+    private String nome;
+    private String codigoBarras;
+    private double preco;
+    private int estoque;
 
     public Produto(int id, String nome, String codigoBarras, double preco, int estoque) {
         this.id = id;
@@ -19,15 +24,15 @@ public class Produto {
 public int getId(){
     return this.id;
 }
-public void setId(int id){
-    this.id = id;
-}
 
 // Nome
 public String getNome(){
     return this.nome;
 }
 public void setNome(String nome){
+    if (Objects.equals(nome, "")) {
+        throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+    }
     this.nome = nome;
 }
 
@@ -36,6 +41,9 @@ public String getCodigoBarras(){
     return this.codigoBarras;
 }
 public void setCodigoBarras(String codigoBarras){
+    if (Objects.equals(nome, "")) {
+        throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+    }
     this.codigoBarras = codigoBarras;
 }
 
@@ -44,6 +52,9 @@ public double getPrecos(){
     return this.preco;
 }
 public void setPreco(Double  preco){
+    if (preco <= 0) {
+        throw new QuantNegativadeProdutosExcep("ERRO: O preço do produto não pode ser igual a 0!");
+    }
     this.preco = preco;
 }
 
@@ -52,6 +63,9 @@ public int getEstoque(){
     return this.estoque;
 }
 public void setEstoque(int estoque){
+    if (estoque < 0) {
+        throw new QuantNegativadeProdutosExcep("ERRO: A quantidade de estoque não pode ser negativa!");
+    }
     this.estoque = estoque;
 }
 
