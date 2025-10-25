@@ -26,7 +26,7 @@ public abstract class Cliente {
         return id;
     }
 
-    // Getter e Setter para nome
+    // Getter & Setter para nome
     public String getNome() {
         return nome;
     }
@@ -37,7 +37,7 @@ public abstract class Cliente {
         this.nome = nome;
     }
 
-    // Getter e Setter para telefone
+    // Getter & Setter para telefone
     public String getTelefone() {
         return telefone;
     }
@@ -48,7 +48,7 @@ public abstract class Cliente {
         this.telefone = telefone;
     }
 
-    // Getter e Setter para categoria
+    // Getter & Setter para categoria
     public Categoria getCategoria() {
         return categoria;
     }
@@ -58,6 +58,10 @@ public abstract class Cliente {
         }
         this.categoria = categoria;
     }
+
+    // Getter & Setter para o CPF/CNPJ das classes filhas
+    public abstract String getDocumento();
+    public abstract  void setDocumento(String cpfCnpj);
 
     // toString
     @Override

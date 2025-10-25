@@ -26,6 +26,19 @@ public class ClientePJ extends Cliente {
         this.cnpj = cnpj;
     }
 
+    // Getter & Setter de CNPJ para a classe mãe
+    @Override
+    public String getDocumento() {
+        return this.cnpj;
+    }
+    @Override
+    public void setDocumento(String cpfCnpj) {
+        if (Objects.equals(cpfCnpj, "")) {
+            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM CPF/CNPJ NÃO É PERMITIDO!");
+        }
+        this.cnpj = cpfCnpj;
+    }
+
     @Override
     public String toString() {
         return "ClientePJ{" +
