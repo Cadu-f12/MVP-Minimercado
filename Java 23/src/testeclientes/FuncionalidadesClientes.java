@@ -12,7 +12,6 @@ public class FuncionalidadesClientes {
     public void cadastrarCliente() {
         while (true) { // repete até o usuário digitar uma opção válida
             System.out.print("""
-                Tipo de pessoa
                 1 - Pessoa Jurídica
                 2 - Pessoa Física
                 Digite uma opção:\s""");
@@ -91,7 +90,7 @@ public class FuncionalidadesClientes {
             - Prata
             - Ouro
             (Maiúsculo ou minúsculo é indiferente, apenas digite corretamente)
-            Escolha: """);
+            Escolha:\s""");
 
         String nivel = scanner.nextLine().trim().toUpperCase(); // normaliza entrada
 
@@ -129,9 +128,13 @@ public class FuncionalidadesClientes {
     }
 
     public void listarClientes() {
-        Cliente[] clientes = clienteService.listarClientes();
-
         System.out.println("== Lista de clientes ==");
+        Cliente[] clientes = clienteService.listarClientes();
+        if (clientes.length == 0) {
+            System.out.println("Nenhum produto cadastrado.");
+            return;
+        }
+
         System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-16s |%n",
                 "ID", "NOME", "TELEFONE", "FIDELIDADE", "CPF/CNPJ");
         System.out.println("-".repeat(85));

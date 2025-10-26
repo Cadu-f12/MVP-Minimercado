@@ -38,12 +38,13 @@ public class FuncionalidadesProdutos {
             System.out.println("Nenhum produto cadastrado.");
             return;
         }
+
+        System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-10s |%n",
+                "ID", "NOME", "CÓDIGO", "PREÇO", "ESTOQUE");
+        System.out.println("-".repeat(85));
         for (Produto p : produtos) {
-            System.out.println("ID: " + p.getId() +
-                    " | Nome: " + p.getNome() +
-                    " | Código: " + p.getCodigoBarras() +
-                    " | Preço: " + p.getPrecos() +
-                    " | Estoque: " + p.getEstoque());
+            System.out.printf("| %03d | %-20s | %-20s | %-10s | %-10s |%n",
+                    p.getId(), p.getNome(), p.getCodigoBarras(), p.getPrecos(), p.getEstoque());
         }
     }
 

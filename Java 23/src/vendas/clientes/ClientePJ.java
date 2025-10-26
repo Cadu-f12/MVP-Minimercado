@@ -21,7 +21,7 @@ public class ClientePJ extends Cliente {
     }
     public void setCnpj(String cnpj) {
         if (Objects.equals(cnpj, "")) {
-            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM CNPJ NÃO É PERMITIDO!");
+            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.cnpj = cnpj;
     }
@@ -34,7 +34,7 @@ public class ClientePJ extends Cliente {
     @Override
     public void setDocumento(String cpfCnpj) {
         if (Objects.equals(cpfCnpj, "")) {
-            throw new AtribudoIncompletoException("ERRO: CLIENTE SEM CPF/CNPJ NÃO É PERMITIDO!");
+            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.cnpj = cpfCnpj;
     }
