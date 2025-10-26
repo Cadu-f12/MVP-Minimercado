@@ -56,7 +56,7 @@ public class FuncionalidadesClientes {
 
             try {
                 clienteService.cadastrarCliente(cliente);
-                System.out.println("\nCliente cadastrado com sucesso!\n");
+                System.out.println("Cliente cadastrado com sucesso!");
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
                 continue;
@@ -64,7 +64,6 @@ public class FuncionalidadesClientes {
             break; // sai do loop se tudo deu certo
         }
     }
-
 
     // Cadastrar um cliente na fidelidade (OBS: esse cliente deve já existir no sistema)
     public void cadastrarFidelidade() {
@@ -85,11 +84,9 @@ public class FuncionalidadesClientes {
 
         // Escolha da fidelidade
         System.out.print("""
-            Digite o nível da fidelidade:
-            - Bronze
-            - Prata
-            - Ouro
-            (Maiúsculo ou minúsculo é indiferente, apenas digite corretamente)
+            Digite o nível da fidelidade
+            (BRONZE, PRATA, OURO)
+            "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
             Escolha:\s""");
 
         String nivel = scanner.nextLine().trim().toUpperCase(); // normaliza entrada
@@ -131,7 +128,7 @@ public class FuncionalidadesClientes {
         System.out.println("== Lista de clientes ==");
         Cliente[] clientes = clienteService.listarClientes();
         if (clientes.length == 0) {
-            System.out.println("Nenhum produto cadastrado.");
+            System.out.println("Nenhum cliente cadastrado.");
             return;
         }
 
@@ -146,16 +143,14 @@ public class FuncionalidadesClientes {
     }
 
     public void editarCliente() {
-        Cliente cliente = null;
+        Cliente cliente;
 
         while (true) {
             try {
                 System.out.print("Digite o ID do cliente que deseja editar: ");
-                int id = Integer.parseInt(scanner.nextLine());
-                cliente = clienteService.consultarCliente(id);
+                cliente = clienteService.consultarCliente(scanner.nextInt());
+                scanner.nextLine();
                 break;
-            } catch (NumberFormatException e) {
-                System.out.println("ID inválido. Digite apenas números.\n");
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!\n");
             }
@@ -169,12 +164,15 @@ public class FuncionalidadesClientes {
 
         while (true) {
             try {
-                System.out.print("Novo nível de fidelidade (BRONZE, PRATA, OURO): ");
-                String nivel = scanner.nextLine().trim().toUpperCase();
-                cliente.setCategoria(Categoria.valueOf(nivel));
+                System.out.print("""
+                        Novo nível de fidelidade
+                        (NULO, BRONZE, PRATA, OURO)
+                        "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
+                        Escolha:\s""");
+                cliente.setCategoria(Categoria.valueOf(scanner.nextLine().trim().toUpperCase()));
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("Categoria inválida. Digite BRONZE, PRATA ou OURO.\n");
+                System.out.println("Categoria inválida. Digite NULO, BRONZE, PRATA ou OURO.\n");
             }
         }
 
@@ -182,6 +180,6 @@ public class FuncionalidadesClientes {
         cliente.setDocumento(scanner.nextLine().trim());
 
         clienteService.editarCliente(cliente);
-        System.out.println("\nCliente atualizado com sucesso!");
+        System.out.println("Cliente atualizado com sucesso!");
     }
 }

@@ -1,5 +1,6 @@
 package vendas.produtos;
 
+import vendas.clientes.excecoes_clientes.ClienteNaoEncontradoException;
 import vendas.produtos.excecoesprodutos.ProdutoNaoEncontradoExcep;
 import vendas.produtos.excecoesprodutos.QuantNegativadeProdutosExcep;
 import vendas.produtos.excecoesprodutos.TipoDeRegistroInexistenteExcep;
@@ -42,15 +43,11 @@ public class ProdutoService implements IProdutoService {
 // EDIÇÃO DE UM PRODUTO -- FUNCIONANDO
 
     @Override
-    public void editarProdutos(int id, Produto novo) {
-        Produto existente = produtos.get(id);
-        if (existente != null) {
-            existente.setNome(novo.getNome());
-            existente.setCodigoBarras(novo.getCodigoBarras());
-            existente.setPreco(novo.getPrecos());
-            existente.setEstoque(novo.getEstoque());
-            produtos.put(id, novo);
+    public void editarProdutos(Produto novoProduto) {
+        if (!this.produtos.containsKey(novoProduto.getId())) {
+            throw new ProdutoNaoEncontradoExcep("ERRO: Cliente não existe no sistema");
         }
+        produtos.put(novoProduto.getId(), novoProduto);
     }
 
     // ==========================================================================================
@@ -62,25 +59,24 @@ public class ProdutoService implements IProdutoService {
         if (produto == null) {
             throw new ProdutoNaoEncontradoExcep("Produto não encontrado!");
         }
+        if (quantidade < 0) {
+            throw new QuantNegativadeProdutosExcep("A quantidade de entrada ou saída deve ser positiva!");
+        }
 
         switch (tipo.toLowerCase()) {
             case "entrada":
                 produto.setEstoque(produto.getEstoque() + quantidade);
                 break;
-
             case "saida":
                 if (produto.getEstoque() >= quantidade) {
                     produto.setEstoque(produto.getEstoque() - quantidade);
-                    System.out.println("Saída de " + quantidade + " unidades do produto " + produto.getNome() + ".");
                 } else {
                     throw new QuantNegativadeProdutosExcep("Saída do estoque não pode ser negativa!");
                 }
                 break;
-
             case "baixa":
                 produto.setEstoque(0);
                 break;
-
             default:
                 throw new TipoDeRegistroInexistenteExcep("O registro no estoque deve ser do tipo Entrada, Saída ou Baixa");
         }

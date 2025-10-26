@@ -19,55 +19,57 @@ public class Produto {
         this.preco = preco;
         this.estoque = estoque;
     }
-
-    // ID
-public int getId(){
-    return this.id;
-}
-
-// Nome
-public String getNome(){
-    return this.nome;
-}
-public void setNome(String nome){
-    if (Objects.equals(nome, "")) {
-        throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+    public Produto(int id) {
+        this.id = id;
     }
-    this.nome = nome;
-}
-
-// Codigo de Barras
-public String getCodigoBarras(){
-    return this.codigoBarras;
-}
-public void setCodigoBarras(String codigoBarras){
-    if (Objects.equals(nome, "")) {
-        throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+    // Getter & Setter para ID
+    public int getId(){
+        return this.id;
     }
-    this.codigoBarras = codigoBarras;
-}
 
-// Preço
-public double getPrecos(){
-    if (preco <= 0) {
-        throw new QuantNegativadeProdutosExcep("ERRO: O preço do produto não pode ser igual a 0!");
+    // Getter & Setter para Nome
+    public String getNome(){
+        return this.nome;
     }
-    return this.preco;
-}
-public void setPreco(Double  preco){
-    this.preco = preco;
-}
+    public void setNome(String nome){
+        if (Objects.equals(nome, "")) {
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+        }
+        this.nome = nome;
+    }
 
-// Estoque
-public int getEstoque(){
-    return this.estoque;
-}
-public void setEstoque(int estoque){
-    if (estoque < 0) {
-        throw new QuantNegativadeProdutosExcep("ERRO: A quantidade de estoque não pode ser negativa!");
+    // Getter & Setter para Codigo de Barras
+    public String getCodigoBarras(){
+        return this.codigoBarras;
     }
-    this.estoque = estoque;
-}
+    public void setCodigoBarras(String codigoBarras){
+        if (Objects.equals(nome, "")) {
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode estar vazio!");
+        }
+        this.codigoBarras = codigoBarras;
+    }
+
+    // Getter & Setter para Preço
+    public double getPrecos(){
+        return this.preco;
+    }
+    public void setPreco(Double  preco){
+        if (preco == 0.0) {
+            throw new AtributoIncompletoException("ERRO: O preço do produto não pode ser igual a 0!");
+        }
+            this.preco = preco;
+    }
+
+    // Getter & Setter para Estoque
+    public int getEstoque(){
+        return this.estoque;
+    }
+    public void setEstoque(int estoque){
+        if (estoque < 0) {
+            throw new QuantNegativadeProdutosExcep("ERRO: A quantidade de estoque não deve ser negativa!");
+        }
+        this.estoque = estoque;
+    }
 
     @Override
     public String toString() {

@@ -10,23 +10,22 @@ public class FuncionalidadesProdutos {
 
     public void cadastrarProduto() {
         System.out.print("ID: ");
-        int id = scanner.nextInt();
+        Produto produto = new Produto(scanner.nextInt());
         scanner.nextLine();
 
         System.out.print("Nome: ");
-        String nome = scanner.nextLine();
+        produto.setNome(scanner.nextLine());
 
         System.out.print("Código de Barras: ");
-        String codigoBarras = scanner.nextLine();
+        produto.setCodigoBarras(scanner.nextLine());
 
         System.out.print("Preço: ");
-        double preco = scanner.nextDouble();
+        produto.setPreco(scanner.nextDouble());
 
         System.out.print("Estoque inicial: ");
-        int estoque = scanner.nextInt();
+        produto.setEstoque(scanner.nextInt());
 
-        Produto novo = new Produto(id, nome, codigoBarras, preco, estoque);
-        produtoService.cadastroProduto(novo);
+        produtoService.cadastroProduto(produto);
 
         System.out.println("Produto cadastrado com sucesso!");
     }
@@ -39,66 +38,81 @@ public class FuncionalidadesProdutos {
             return;
         }
 
-        System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-10s |%n",
+        System.out.printf("| %-3s | %-20s | %-20s | %-7s | %-7s |%n",
                 "ID", "NOME", "CÓDIGO", "PREÇO", "ESTOQUE");
-        System.out.println("-".repeat(85));
+        System.out.println("-".repeat(73));
         for (Produto p : produtos) {
-            System.out.printf("| %03d | %-20s | %-20s | %-10s | %-10s |%n",
+            System.out.printf("| %03d | %-20s | %-20s | %7.2f | %7d |%n",
                     p.getId(), p.getNome(), p.getCodigoBarras(), p.getPrecos(), p.getEstoque());
         }
     }
 
     public void consultarProduto() {
-        System.out.print("Digite o ID do produto: ");
-        int id = scanner.nextInt();
-        try {
-            Produto p = produtoService.consultaProdutos(id);
-            System.out.println("=== Produto Encontrado ===");
-            System.out.println("ID: " + p.getId());
-            System.out.println("Nome: " + p.getNome());
-            System.out.println("Código: " + p.getCodigoBarras());
-            System.out.println("Preço: " + p.getPrecos());
-            System.out.println("Estoque: " + p.getEstoque());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+
+        Produto produto;
+        while (true) {
+            try {
+                System.out.print("Digite o id que corresponde ao produto da consulta: ");
+                produto = produtoService.consultaProdutos(scanner.nextInt());
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
+            }
         }
+        System.out.println("== Produto encontrado ==");
+        System.out.printf("| %-3s | %-20s | %-20s | %-7s | %-7s |%n",
+                "ID", "NOME", "CÓDIGO", "PREÇO", "ESTOQUE");
+        System.out.println("-".repeat(73));
+        System.out.printf("| %03d | %-20s | %-20s | %7.2f | %7d |%n",
+                produto.getId(), produto.getNome(), produto.getCodigoBarras(), produto.getPrecos(), produto.getEstoque());
     }
 
     public void editarProduto() {
-        System.out.print("Digite o ID do produto a editar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
+        Produto produto;
+        while (true) {
+            try {
+                System.out.print("Digite o ID do produto que deseja editar: ");
+                produto = produtoService.consultaProdutos(scanner.nextInt());
+                scanner.nextLine();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
+            }
+        }
         System.out.print("Novo nome: ");
-        String nome = scanner.nextLine();
+        produto.setNome(scanner.nextLine());
 
         System.out.print("Novo código de barras: ");
-        String codigoBarras = scanner.nextLine();
+        produto.setCodigoBarras(scanner.nextLine());
 
         System.out.print("Novo preço: ");
-        double preco = scanner.nextDouble();
+        produto.setPreco(scanner.nextDouble());
 
         System.out.print("Novo estoque: ");
-        int estoque = scanner.nextInt();
+        produto.setEstoque(scanner.nextInt());
 
-        Produto novo = new Produto(id, nome, codigoBarras, preco, estoque);
-        produtoService.editarProdutos(id, novo);
+        produtoService.editarProdutos(produto);
         System.out.println("Produto atualizado com sucesso!");
     }
 
     public void registrarEstoque() {
-        System.out.print("Digite o ID do produto: ");
-        int id = scanner.nextInt();
+        System.out.print("Digite o ID do produto que deseja alterar o estoque: ");
+        Produto produto = produtoService.consultaProdutos(scanner.nextInt());
+        scanner.nextLine();
 
-        System.out.print("Digite a quantidade: ");
+        System.out.print("Digite a quantidade de saída ou entrada: ");
         int quantidade = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Tipo de registro (entrada / saida / baixa): ");
+        System.out.print("""
+                Tipo de registro 
+                (entrada / saida / baixa)
+                "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
+                Escolha:\s""");
         String tipo = scanner.nextLine();
 
         try {
-            produtoService.registroEstoque(id, quantidade, tipo);
+            produtoService.registroEstoque(produto.getId(), quantidade, tipo.toLowerCase().trim());
             System.out.println("Registro de estoque realizado com sucesso!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
