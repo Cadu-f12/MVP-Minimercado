@@ -1,6 +1,6 @@
 package vendas.clientes;
 
-import vendas.clientes.excecoes_clientes.AtribudoIncompletoException;
+import vendas.clientes.excecoes_clientes.AtributoIncompletoException;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ public class ClientePF extends Cliente {
     }
     public void setCpf(String cpf) {
         if (Objects.equals(cpf, "")) {
-            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.cpf = cpf;
     }
@@ -34,7 +34,7 @@ public class ClientePF extends Cliente {
     @Override
     public void setDocumento(String cpfCnpj) {
         if (Objects.equals(cpfCnpj, "")) {
-            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.cpf = cpfCnpj;
     }

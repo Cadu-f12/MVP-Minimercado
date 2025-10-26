@@ -1,6 +1,6 @@
 package vendas.clientes;
 
-import vendas.clientes.excecoes_clientes.AtribudoIncompletoException;
+import vendas.clientes.excecoes_clientes.AtributoIncompletoException;
 
 import java.util.Objects;
 
@@ -31,7 +31,7 @@ public abstract class Cliente {
     }
     public void setNome(String nome) {
         if (Objects.equals(nome, "")) {
-            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.nome = nome;
     }
@@ -42,7 +42,7 @@ public abstract class Cliente {
     }
     public void setTelefone(String telefone) {
         if (Objects.equals(telefone, "")) {
-            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.telefone = telefone;
     }
@@ -53,7 +53,7 @@ public abstract class Cliente {
     }
     public void setCategoria(Categoria categoria) {
         if (Objects.equals(categoria, null)) {
-            throw new AtribudoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
+            throw new AtributoIncompletoException("ERRO: O campo selecionado não pode ser estar vazio!");
         }
         this.categoria = categoria;
     }
