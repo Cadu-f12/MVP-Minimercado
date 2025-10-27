@@ -26,7 +26,7 @@ public class Main {
                 menuProdutos.ativarMenu();
             }
             case 3 -> {
-                System.out.println("""
+                System.out.print("""
                         [1] - Registar uma venda
                         [2] - Listar vendas
                         Escolha:\s""");

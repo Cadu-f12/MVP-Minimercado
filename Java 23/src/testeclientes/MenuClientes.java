@@ -10,9 +10,10 @@ public class MenuClientes {
         while (true) {
             System.out.print("""
                         [1] - Cadastrar cliente
-                        [2] - Consultar cliente
-                        [3] - Editar cliente
-                        [4] - Listar clientes
+                        [2] - Cadastrar cliente na fidelidade
+                        [3] - Consultar cliente
+                        [4] - Editar cliente
+                        [5] - Listar clientes
                         [0] - Sair
                         Escolha:\s""");
             int escolha = Integer.parseInt(scanner.nextLine());
@@ -21,12 +22,15 @@ public class MenuClientes {
                     fClientes.cadastrarCliente();
                 }
                 case 2 -> {
-                    fClientes.consultarCliente();
+                    fClientes.cadastrarFidelidade();
                 }
                 case 3 -> {
-                    fClientes.editarCliente();
+                    fClientes.consultarCliente();
                 }
                 case 4 -> {
+                    fClientes.editarCliente();
+                }
+                case 5 -> {
                     fClientes.listarClientes();
                 }
                 case 0 -> {

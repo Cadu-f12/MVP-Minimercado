@@ -77,41 +77,49 @@ public class FuncionalidadesClientes {
     // Cadastrar um cliente na fidelidade (OBS: esse cliente deve já existir no sistema)
     public void cadastrarFidelidade() {
         Cliente cliente;
-
-        // Loop para garantir que o cliente existe
-        while (true) {
-            try {
-                System.out.print("Digite o id do cliente que deseja cadastrar na fidelidade: ");
-                cliente = clienteService.consultarCliente(scanner.nextInt());
-                scanner.nextLine(); // limpa o buffer
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
-                scanner.nextLine(); // evita loop infinito se digitar texto
-            }
-        }
-
-        // Escolha da fidelidade
-        System.out.print("""
-            Digite o nível da fidelidade
-            (BRONZE, PRATA, OURO)
-            "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
-            Escolha:\s""");
-
-        String nivel = scanner.nextLine().trim().toUpperCase(); // normaliza entrada
+        int id;
 
         try {
+            System.out.print("Digite o id do cliente que deseja cadastrar na fidelidade: ");
+            id = scanner.nextInt();
+            scanner.nextLine(); // limpa o buffer
+            cliente = clienteService.consultarCliente(id);
+
+            // Escolha da fidelidade
+            System.out.print("""
+                Digite o nível da fidelidade
+                (BRONZE, PRATA, OURO)
+                "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
+                Escolha:\s""");
+            String nivel = scanner.nextLine().trim().toUpperCase(); // normaliza entrada
             Categoria categoria = Categoria.valueOf(nivel); // converte string para Enum
             cliente.setCategoria(categoria);
+
             clienteService.editarCliente(cliente);
             System.out.println("Fidelidade atualizada com sucesso para: " + categoria);
+        } catch (InputMismatchException e) {
+            System.out.println("""
+                    Entrada inválida!
+                    Digite apenas números.""");
+            scanner.nextLine();
+            return;
+        } catch (ClienteNaoEncontradoException e) {
+            System.out.println("""
+            ID não encontrado!
+            Certifique-se de que o cliente está cadastrado antes de consultar.""");
+            return;
         } catch (IllegalArgumentException e) {
             System.out.println(""" 
-                    OPÇÃO INVÁLIDA!
-                    Edição não efetuada\s""");
+                    Nivel de fidelidade inválido!
+                    Por favor, insira BRONZE, PRATA ou OURO apenas.\s""");
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
         }
     }
 
+    // Consulta um cliente do sistema
     public void consultarCliente() {
         try {
             System.out.print("Digite o id que corresponde ao cliente da consulta: ");
@@ -146,7 +154,7 @@ public class FuncionalidadesClientes {
         }
     }
 
-
+    // Lista todos os clientes do sistema
     public void listarClientes() {
         Cliente[] clientes = clienteService.listarClientes();
         if (clientes.length == 0) {
@@ -167,6 +175,7 @@ public class FuncionalidadesClientes {
         }
     }
 
+    // Edita um cliente do sistema
     public void editarCliente() {
         Cliente cliente;
         int id;

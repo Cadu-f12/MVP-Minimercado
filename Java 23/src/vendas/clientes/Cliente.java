@@ -9,6 +9,7 @@ public abstract class Cliente {
     private String nome;
     private String telefone;
     private Categoria categoria;
+
     // Construtor da classe Cliente
     public Cliente(int id, String nome, String telefone, Categoria categoria) {
         this.id = id;
