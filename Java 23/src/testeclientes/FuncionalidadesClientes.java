@@ -138,7 +138,6 @@ public class FuncionalidadesClientes {
             System.out.println("""
             ID não encontrado!
             Certifique-se de que o cliente está cadastrado antes de consultar.""");
-            scanner.nextLine();
             return;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -207,13 +206,11 @@ public class FuncionalidadesClientes {
             System.out.println("""
             ID não encontrado!
             Certifique-se de que o cliente está cadastrado antes de consultar.""");
-            scanner.nextLine();
             return;
         } catch (IllegalArgumentException e) {
             System.out.println("""
                     Categoria inválida!
                     Digite NULO, BRONZE, PRATA ou OURO.""");
-            scanner.nextLine();
             return;
         } catch (Exception e) {
             System.out.println("Opção inválida!");
