@@ -1,7 +1,9 @@
 package testeclientes;
 
 import vendas.clientes.*;
+import vendas.clientes.excecoes_clientes.ClienteNaoEncontradoException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FuncionalidadesClientes {
@@ -10,11 +12,11 @@ public class FuncionalidadesClientes {
 
     // Criação de cliente com CPF ou CNPJ, para cadastrar no sistema
     public void cadastrarCliente() {
-        while (true) { // repete até o usuário digitar uma opção válida
+        try {
             System.out.print("""
-                1 - Pessoa Jurídica
-                2 - Pessoa Física
-                Digite uma opção:\s""");
+                    1 - Pessoa Jurídica
+                    2 - Pessoa Física
+                    Digite uma opção:\s""");
             int tipo = scanner.nextInt();
             scanner.nextLine();
 
@@ -23,7 +25,6 @@ public class FuncionalidadesClientes {
             scanner.nextLine();
 
             Cliente cliente;
-
             if (tipo == 1) {
                 cliente = new ClientePJ(id);
 
@@ -49,20 +50,28 @@ public class FuncionalidadesClientes {
                 ((ClientePF) cliente).setCpf(scanner.nextLine());
 
             } else {
-                System.out.println("OPÇÃO INVÁLIDA!\nTENTE NOVAMENTE.\n");
-                continue; // volta para o início do while
+                System.out.println("""
+                        OPÇÃO INVÁLIDA!
+                        TENTE NOVAMENTE.""");
+                return;
             }
             cliente.setCategoria(Categoria.NULO); // TODA CRIAÇÃO DE UM CLIENTE NOVO POR PADRÃO, SURGE COMO FIDELIDADE NULA.
 
-            try {
-                clienteService.cadastrarCliente(cliente);
-                System.out.println("Cliente cadastrado com sucesso!");
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!");
-                continue;
-            }
-            break; // sai do loop se tudo deu certo
+            clienteService.cadastrarCliente(cliente);
+            System.out.println("Cliente cadastrado com sucesso!");
+
+        } catch (InputMismatchException e) {
+            System.out.println("""
+                Entrada inválida!
+                Digite apenas números.""");
+            scanner.nextLine();
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            scanner.nextLine();
+            return;
         }
+
     }
 
     // Cadastrar um cliente na fidelidade (OBS: esse cliente deve já existir no sistema)
@@ -104,33 +113,50 @@ public class FuncionalidadesClientes {
     }
 
     public void consultarCliente() {
-        Cliente cliente;
-        while (true) {
-            try {
-                System.out.print("Digite o id que corresponde ao cliente da consulta: ");
-                cliente = clienteService.consultarCliente(scanner.nextInt());
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + "\n TENTE NOVAMENTE!");
-            }
-        }
-        System.out.println("== Cliente encontrado ==");
-        System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-16s |%n",
-                "ID", "NOME", "TELEFONE", "FIDELIDADE", "CPF/CNPJ");
-        System.out.println("-".repeat(85));
+        try {
+            System.out.print("Digite o id que corresponde ao cliente da consulta: ");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // limpa o buffer
 
-        System.out.printf("| %03d | %-20s | %-20s | %-10s | %-16s |%n",
-                cliente.getId(), cliente.getNome(), cliente.getTelefone(),
-                cliente.getCategoria(), cliente.getDocumento());
-    }
+            Cliente cliente = clienteService.consultarCliente(id);
 
-    public void listarClientes() {
-        System.out.println("== Lista de clientes ==");
-        Cliente[] clientes = clienteService.listarClientes();
-        if (clientes.length == 0) {
-            System.out.println("Nenhum cliente cadastrado.");
+            System.out.println("== Cliente encontrado ==");
+            System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-16s |%n",
+                    "ID", "NOME", "TELEFONE", "FIDELIDADE", "CPF/CNPJ");
+            System.out.println("-".repeat(85));
+
+            System.out.printf("| %03d | %-20s | %-20s | %-10s | %-16s |%n",
+                    cliente.getId(), cliente.getNome(), cliente.getTelefone(),
+                    cliente.getCategoria(), cliente.getDocumento());
+        } catch (InputMismatchException e) {
+            System.out.println("""
+                    Entrada inválida!
+                    Digite apenas números.""");
+            scanner.nextLine();
+            return;
+        } catch (ClienteNaoEncontradoException e) {
+            System.out.println("""
+            ID não encontrado!
+            Certifique-se de que o cliente está cadastrado antes de consultar.""");
+            scanner.nextLine();
+            return;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            scanner.nextLine();
             return;
         }
+    }
+
+
+    public void listarClientes() {
+        Cliente[] clientes = clienteService.listarClientes();
+        if (clientes.length == 0) {
+            System.out.println("""
+                    Nenhum cliente cadastrado!
+                    Certifique-se de que os clientes estão cadastrados antes de consultar.""");
+            return;
+        }
+        System.out.println("== Lista de clientes ==");
 
         System.out.printf("| %-3s | %-20s | %-20s | %-10s | %-16s |%n",
                 "ID", "NOME", "TELEFONE", "FIDELIDADE", "CPF/CNPJ");
@@ -144,42 +170,55 @@ public class FuncionalidadesClientes {
 
     public void editarCliente() {
         Cliente cliente;
+        int id;
+        try {
+            System.out.print("Digite o ID do cliente que deseja editar: ");
+            id = scanner.nextInt();
+            scanner.nextLine();
+            cliente = clienteService.consultarCliente(id);
 
-        while (true) {
-            try {
-                System.out.print("Digite o ID do cliente que deseja editar: ");
-                cliente = clienteService.consultarCliente(scanner.nextInt());
-                scanner.nextLine();
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + "\nTENTE NOVAMENTE!\n");
-            }
+
+            System.out.print("Novo nome: ");
+            cliente.setNome(scanner.nextLine().trim());
+
+            System.out.print("Novo telefone: ");
+            cliente.setTelefone(scanner.nextLine().trim());
+
+            System.out.print("""
+                    Novo nível de fidelidade
+                    (NULO, BRONZE, PRATA, OURO)
+                    "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
+                    Escolha:\s""");
+            cliente.setCategoria(Categoria.valueOf(scanner.nextLine().trim().toUpperCase()));
+
+            System.out.print("Novo CNPJ/CPF: ");
+            cliente.setDocumento(scanner.nextLine().trim());
+
+            clienteService.editarCliente(cliente);
+            System.out.println("Cliente atualizado com sucesso!");
+
+        } catch (InputMismatchException e) {
+            System.out.println("""
+                    Entrada inválida!
+                    Digite apenas números.""");
+            scanner.nextLine();
+            return;
+        } catch (ClienteNaoEncontradoException e) {
+            System.out.println("""
+            ID não encontrado!
+            Certifique-se de que o cliente está cadastrado antes de consultar.""");
+            scanner.nextLine();
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println("""
+                    Categoria inválida!
+                    Digite NULO, BRONZE, PRATA ou OURO.""");
+            scanner.nextLine();
+            return;
+        } catch (Exception e) {
+            System.out.println("Opção inválida!");
+            scanner.nextLine();
+            return;
         }
-
-        System.out.print("Novo nome: ");
-        cliente.setNome(scanner.nextLine().trim());
-
-        System.out.print("Novo telefone: ");
-        cliente.setTelefone(scanner.nextLine().trim());
-
-        while (true) {
-            try {
-                System.out.print("""
-                        Novo nível de fidelidade
-                        (NULO, BRONZE, PRATA, OURO)
-                        "Maiúsculo ou minúsculo é indiferente, apenas digite corretamente"
-                        Escolha:\s""");
-                cliente.setCategoria(Categoria.valueOf(scanner.nextLine().trim().toUpperCase()));
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("Categoria inválida. Digite NULO, BRONZE, PRATA ou OURO.\n");
-            }
-        }
-
-        System.out.print("Novo CNPJ/CPF: ");
-        cliente.setDocumento(scanner.nextLine().trim());
-
-        clienteService.editarCliente(cliente);
-        System.out.println("Cliente atualizado com sucesso!");
     }
 }

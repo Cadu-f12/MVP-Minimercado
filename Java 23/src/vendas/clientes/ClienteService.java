@@ -18,6 +18,7 @@ public class ClienteService implements IClienteService {
     buscando pelo id do cliente */
     @Override
     public Cliente consultarCliente(int id) {
+        // Lança uma exceção quando o cliente não é encontrado!
         if (!this.clientes.containsKey(id))
             throw new ClienteNaoEncontradoException("ERRO: Cliente não existe no sistema");
         return this.clientes.get(id);
