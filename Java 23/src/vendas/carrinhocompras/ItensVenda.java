@@ -11,16 +11,9 @@ public class ItensVenda {
     private final double precoTotal;
 
     // Construtor que está calculando o preço total dos itens da venda.
-    public ItensVenda(Produto produto, int quantidade) {
+    public ItensVenda(Produto produto) {
         this.id = produto.getId();
         this.produto = produto;
-        if (quantidade <= 0) {
-            throw new QuantidadeNegativaException("ERRO: quantidade abaixo de zero ou igual a zero");
-        } else if(quantidade > produto.getEstoque()) {
-            throw new QuantidadeForaDeEstoqueException("ERRO: quantidade maior do que a restante no estoque");
-        } else {
-            this.quantidade = quantidade;
-        }
         this.precoTotal = produto.getPrecos() * this.quantidade;
     }
     public ItensVenda(int id, Produto produto) {
@@ -49,7 +42,7 @@ public class ItensVenda {
     public void setQuantidade(int quantidade) {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("ERRO: quantidade abaixo de zero ou igual a zero");
-        } else if (quantidade > produto.getId()) {
+        } else if (quantidade > produto.getEstoque()) {
             throw new IllegalArgumentException("ERRO: quantidade maior do que a restante no estoque");
         } else {
             this.quantidade = quantidade;

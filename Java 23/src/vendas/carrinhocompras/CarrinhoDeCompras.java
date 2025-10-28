@@ -16,7 +16,7 @@ public class CarrinhoDeCompras {
     se a venda não for repetida */
     public void registrarItensVenda(ItensVenda itensVenda) {
         if (this.itensVenda.containsKey(itensVenda.getId())) {
-            throw new ItensVendaDuplicadoException("ERRO: ItensVenda já está registrado!");
+            throw new ItensVendaDuplicadoException("ERRO: ItensVenda já está no carrinho!");
         }
         this.itensVenda.put(itensVenda.getId(), itensVenda);
     }
@@ -31,7 +31,8 @@ public class CarrinhoDeCompras {
         return ItensVendaLista;
     }
 
-    // Metodo que pega o preço de cada ‘item’ e soma tudo, retornando um valor total da soma
+    /* Metodo que pega o preço de cada ‘item’ e soma tudo,
+    retornando um valor total da soma */
     public double somarItensVenda() {
         ItensVenda[] itensVendaLista = new ItensVenda[this.itensVenda.size()];
 
