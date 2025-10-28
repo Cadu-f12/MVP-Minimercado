@@ -1,6 +1,8 @@
 package vendas;
 
+import vendas.carrinhocompras.ItensVenda;
 import vendas.excecoesvendas.VendaDuplicadaException;
+import vendas.produtos.Produto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,17 @@ public class VendaService {
     public void registarVenda(Venda venda) {
         if (vendas.containsKey(venda.getId())) {
             throw new VendaDuplicadaException("ERRO: Está venda já está no sistema!");
+        }
+
+        ItensVenda[] itens = venda.getItens();
+
+        for (ItensVenda item : itens) {
+            Produto produto = item.getProduto();
+            int quantidadeVendida = item.getQuantidade();
+
+            int novoEstoque = produto.getEstoque() - quantidadeVendida;
+
+            produto.setEstoque(novoEstoque);
         }
         vendas.put(venda.getId(), venda);
     }
