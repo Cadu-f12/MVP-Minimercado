@@ -1,6 +1,5 @@
 package vendas.produtos;
 
-import vendas.clientes.excecoes_clientes.ClienteNaoEncontradoException;
 import vendas.produtos.excecoesprodutos.ProdutoNaoEncontradoExcep;
 import vendas.produtos.excecoesprodutos.QuantNegativadeProdutosExcep;
 import vendas.produtos.excecoesprodutos.TipoDeRegistroInexistenteExcep;

@@ -1,6 +1,6 @@
 package vendas.produtos;
 
-import vendas.clientes.excecoes_clientes.AtributoIncompletoException;
+import vendas.clientes.excecoesclientes.AtributoIncompletoException;
 import vendas.produtos.excecoesprodutos.QuantNegativadeProdutosExcep;
 
 import java.util.Objects;

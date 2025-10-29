@@ -1,6 +1,6 @@
 package vendas.clientes;
 
-import vendas.clientes.excecoes_clientes.AtributoIncompletoException;
+import vendas.clientes.excecoesclientes.AtributoIncompletoException;
 
 import java.util.Objects;
 

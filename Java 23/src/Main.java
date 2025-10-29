@@ -7,7 +7,7 @@ import vendas.clientes.*;
 import vendas.produtos.Produto;
 import vendas.produtos.ProdutoService;
 
-public class Main2 {
+public class Main {
     private final static ClienteService clienteS = new ClienteService();
     private final static ProdutoService produtoS = new ProdutoService();
     private final static VendaService vendaS = new VendaService();
@@ -17,7 +17,6 @@ public class Main2 {
         // --- Clientes ---
 
         /* Cadastro de clientes */
-
         Cliente cliente1 = new ClientePF(1);
         cliente1.setNome("Bianca");
         cliente1.setTelefone("48984008824");
@@ -34,13 +33,11 @@ public class Main2 {
         clienteS.cadastrarCliente(cliente2);
 
         /* Consultar cliente */
-
         System.out.println("Consulta:");
         Cliente cliente = clienteS.consultarCliente(1);
         System.out.println(cliente);
 
         /* Editar cliente */
-
         Cliente cliente3 = new ClientePF(1);
         cliente3.setNome("João");
         cliente3.setTelefone("56889434545");
@@ -50,7 +47,6 @@ public class Main2 {
         clienteS.editarCliente(cliente3);
 
         /* Listar clientes */
-
         System.out.println("Lista de clientes:");
         Cliente[] clientes = clienteS.listarClientes();
         for (Cliente c : clientes) {
@@ -81,7 +77,6 @@ public class Main2 {
         System.out.println(produto);
 
         /* Editar produto */
-
         Produto produto3 = new Produto(2);
         produto3.setNome("Pureza");
         produto3.setCodigoBarras("472835235");
@@ -91,11 +86,9 @@ public class Main2 {
         produtoS.editarProdutos(produto3);
 
         /* Alterar estoque */
-
         produtoS.registroEstoque(2, 10, "saida");
 
         /* Listar produtos */
-
         System.out.println("Listagem de produtos: ");
         Produto[] produtos = produtoS.listarProdutos();
         for (Produto productos : produtos) {
@@ -104,9 +97,11 @@ public class Main2 {
 
         // Registro de venda
 
+        /* Aplicando o desconto para o cliente fidelidade */
         DescontoFidelidade desconto = new DescontoFidelidade(clienteS.consultarCliente(1));
         desconto.aplicarDesconto();
 
+        /* Criando os itens e adicionando no carrinho de compras */
         ItensVenda item1 = new ItensVenda(produtoS.consultaProdutos(1));
         item1.setQuantidade(1);
         ItensVenda item2 = new ItensVenda(produtoS.consultaProdutos(2));
@@ -115,11 +110,13 @@ public class Main2 {
         carrinhoS.registrarItensVenda(item1);
         carrinhoS.registrarItensVenda(item2);
 
+        /* Criando a venda e registrando no sistema */
         Venda venda1 = new Venda(1, clienteS.consultarCliente(1), carrinhoS.listarItensVenda(),
                 desconto.getDesconto(), carrinhoS.somarItensVenda());
 
         vendaS.registarVenda(venda1);
 
+        /* Listando os produtos após a venda */
         System.out.println("Listagem de produtos após venda: ");
         produtos = produtoS.listarProdutos();
         for (Produto product: produtos) {

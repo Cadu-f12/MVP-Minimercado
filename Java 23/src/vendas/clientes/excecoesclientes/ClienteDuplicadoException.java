@@ -1,4 +1,4 @@
-package vendas.clientes.excecoes_clientes;
+package vendas.clientes.excecoesclientes;
 
 public class ClienteDuplicadoException extends RuntimeException {
     public ClienteDuplicadoException(String message) {
