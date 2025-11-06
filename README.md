@@ -1,4 +1,4 @@
-# Trabalho da faculdade: MVP-Minimercado
+# Trabalho acadêmico: MVP-Minimercado
 O projeto MVP Minimercado foi desenvolvido para representar, de forma prática,
 o funcionamento de um sistema simples de minimercado, aplicando conceitos fundamentais de 
 orientação a objetos e estruturação modular de código.
